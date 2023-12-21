@@ -4,4 +4,7 @@
     <string name="ldb_title">Leaderboard</string>
     <string name="back_btn_text">Back</string>
     <string name="play_btn_title">Play</string>
+    <string name="play_again_btn_title">Play Again</string>
+    <string name="menu_btn_title">Menu</string>
+    <string name="empty">blank</string>
 </resources>

@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, LeaderBoard.class);
         startActivity(intent);
     }
-    public void game_on(View view) {
+    public void game_start(View view) {
+        Intent intent = new Intent(MainActivity.this, selectDifficulty.class);
+        startActivity(intent);
     }
 }

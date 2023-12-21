@@ -23,7 +23,7 @@
         android:layout_width="150dp"
         android:layout_height="70dp"
         android:layout_marginTop="176dp"
-        android:onClick="game_on"
+        android:onClick="game_start"
         android:text="@string/play_btn_title"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         android:id="@+id/btn_leaderBoard"
         android:layout_width="220dp"
         android:layout_height="70dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="44dp"
         android:onClick="showLdb"
         android:text="@string/ldb_title"
         android:textSize="20sp"
@@ -43,6 +43,18 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_play" />
+
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:text="Exit"
+        android:textSize="20sp"
+        android:layout_marginTop="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_leaderBoard" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
