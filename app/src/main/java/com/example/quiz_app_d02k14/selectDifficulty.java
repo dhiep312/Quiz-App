@@ -1,13 +1,11 @@
 package com.example.quiz_app_d02k14;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class selectDifficulty extends AppCompatActivity {
     private String selectedMode;
@@ -30,10 +28,13 @@ public class selectDifficulty extends AppCompatActivity {
         TextView editText = findViewById(R.id.editName);
         String userInput = editText.getText().toString();
 
-
+        Intent intent = new Intent(selectDifficulty.this, PlayActivity.class);
         // Example: Print the values to the console
-        Log.d("Player Name", userInput);
-        Log.d("Mode",this.selectedMode);
+//        Log.d("Player Name", userInput);
+//        Log.d("Mode",this.selectedMode);
+        intent.putExtra("player_name",userInput); //Pass info to another activity
+        intent.putExtra("mode",this.selectedMode);
+        startActivity(intent);
     }
 
     public void choose_mode(View view) { //onclick handler when mode buttons clicked
@@ -46,10 +47,10 @@ public class selectDifficulty extends AppCompatActivity {
                 this.selectedMode = "Easy";
                 break;
             case "btn_normal":
-                this.selectedMode = "Easy";
+                this.selectedMode = "Normal";
                 break;
             case "btn_hard":
-                this.selectedMode = "Easy";
+                this.selectedMode = "Hard";
                 break;
 
         }
