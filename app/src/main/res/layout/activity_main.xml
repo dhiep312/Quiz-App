@@ -11,9 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textStyle="bold"
-        android:text="Quiz App"
-        android:textSize="65dp"
-        android:onClick="btn_main"
+        android:text="@string/app_title"
+        android:textSize="65sp"
         android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,11 +22,12 @@
         android:id="@+id/btn_play"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:onClick="btn_main"
-        android:text="Play"
-        android:textSize="20dp"
-        android:layout_marginTop="50sp"
+        android:layout_marginTop="176dp"
+        android:onClick="game_on"
+        android:text="@string/play_btn_title"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -35,37 +35,14 @@
         android:id="@+id/btn_leaderBoard"
         android:layout_width="220dp"
         android:layout_height="70dp"
-        android:onClick="btn_main"
-        android:text="Leader Board"
-        android:textSize="20dp"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="96dp"
+        android:onClick="showLdb"
+        android:text="@string/ldb_title"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_play" />
-
-    <Button
-        android:id="@+id/btn_setting"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:onClick="btn_main"
-        android:text="Setting"
-        android:textSize="20dp"
-        android:layout_marginTop="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_leaderBoard" />
-
-    <Button
-        android:id="@+id/btn_exit"
-        android:layout_width="150dp"
-        android:layout_height="70dp"
-        android:onClick="btn_main"
-        android:text="Exit"
-        android:layout_marginTop="30dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_setting" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
