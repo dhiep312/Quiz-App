@@ -53,22 +53,25 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <Button
-            android:id="@+id/btn_ans_3"
-            android:layout_width="match_parent"
-            android:layout_height="78dp"
-            android:text="@string/empty" />
-
-        <Button
             android:id="@+id/btn_ans_1"
             android:layout_width="match_parent"
             android:layout_height="74dp"
+            android:onClick="btn_a_clicked"
             android:text="@string/empty" />
 
         <Button
             android:id="@+id/btn_ans_2"
             android:layout_width="match_parent"
             android:layout_height="72dp"
+            android:onClick="btn_b_clicked"
             android:text="@string/empty" />
+        <Button
+            android:id="@+id/btn_ans_3"
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:onClick="btn_c_clicked"
+            android:text="@string/empty" />
+
 
     </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.example.quiz_app_d02k14;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
@@ -26,6 +28,11 @@ public class PlayActivity extends AppCompatActivity {
     private String userFileName = "users";
     private int number_of_questions = 0;
     private int current_question = 0;
+    private String current_answer = "";
+    private String correct_answer = "";
+    private int score = 0;
+    private String player_name = "";
+    private String mode = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +40,15 @@ public class PlayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play);
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("player_name")) {
-            String player_name = intent.getStringExtra("player_name");
-            String selected_mode = intent.getStringExtra("mode");
-            game_init(selected_mode);
-            init_question();
-
-
-
+            this.player_name = intent.getStringExtra("player_name");
+            this.mode = intent.getStringExtra("mode");
+            assert this.mode != null;
+            game_init(this.mode);
         }
+        init_question();
+
+
+
     }
 
     public void game_init(String game_mode) {
@@ -67,13 +75,11 @@ public class PlayActivity extends AppCompatActivity {
             // Read CSV file using CSVReader
             CSVReader csvReader = new CSVReader(new InputStreamReader(inputStream));
             List<String> record = extractRandomRow(csvReader);
-            Log.d("Extraction","Successfully");
-
-            String firstField = record.get(0);
             String question_text = record.get(1);
             String a_btn_text = record.get(2);
             String b_btn_text = record.get(3);
             String c_btn_text = record.get(4);
+            this.correct_answer = record.get(5) + "\"";
             TextView question_field = findViewById(R.id.text_question);
             Button a_btn = findViewById(R.id.btn_ans_1);
             Button b_btn = findViewById(R.id.btn_ans_2);
@@ -121,15 +127,10 @@ public class PlayActivity extends AppCompatActivity {
             for (int i = 1; i < record.length; i++) {
                 rowData.add(record[i]);
             }
-
             records.add(rowData);
         }
-
-        Log.d("Read file successfully", "vhbsfhgdjryhgdbv");
         return records;
     }
-
-
     public List<String> RandomRecord(List<List<String>> records) {
         if (records == null || records.isEmpty()) {
             return null; // Handle the case where records are empty or null
@@ -142,6 +143,71 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     public void load_next_question(View view) {
-        init_question();
+        String current_answer = this.current_answer.replace("\"", "");
+        String correct_answer = this.correct_answer.replace("\"", "");
+        if (current_answer.equals(correct_answer)) {
+            this.score++;
+        }
+        Log.d("current",current_answer);
+        Log.d("actual",correct_answer);
+        Log.d("Score", String.valueOf(this.score));
+        if (current_question > number_of_questions) {
+            Log.d("Moveeedcvsdvsvse","Moving on to next activity");
+            Intent intent = new Intent(PlayActivity.this, WinLose.class);
+            intent.putExtra("player_name",this.player_name);
+            intent.putExtra("mode",this.mode);
+            String total_score = String.valueOf(this.score);
+            String total_ques = String.valueOf(this.number_of_questions);
+            intent.putExtra("score",total_score);
+            intent.putExtra("total_ques",total_ques);
+            startActivity(intent);
+
+
+        }else {
+            init_question();
+            resetButtonColors();
+        }
+
+    }
+    private void resetButtonColors() {
+        // Set default color for all buttons
+        Button a_btn = findViewById(R.id.btn_ans_1);
+        Button b_btn = findViewById(R.id.btn_ans_2);
+        Button c_btn = findViewById(R.id.btn_ans_3);
+        a_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button_color));
+        b_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button_color));
+        c_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button_color));
+    }
+
+    public void btn_a_clicked(View v){
+        Button btn_a = findViewById(R.id.btn_ans_1);
+        this.current_answer = (String) btn_a.getText();
+        resetButtonColors();
+        // Example using the hexadecimal representation of green
+        btn_a.setBackgroundColor(Color.parseColor("#004000"));
+
+        Log.d("Answer",this.current_answer);
+        Log.d("Real answer",this.correct_answer);
+    }
+    public void btn_b_clicked(View v){
+        Button btn_b = findViewById(R.id.btn_ans_2);
+        this.current_answer = (String) btn_b.getText();
+        resetButtonColors();
+        // Example using the hexadecimal representation of green
+        btn_b.setBackgroundColor(Color.parseColor("#004000"));
+
+        Log.d("Answer",this.current_answer);
+        Log.d("Real answer",this.correct_answer);
+    }
+    public void btn_c_clicked(View v){
+        Button btn_c = findViewById(R.id.btn_ans_3);
+        this.current_answer = (String) btn_c.getText();
+        resetButtonColors();
+        // Example using the hexadecimal representation of green
+        btn_c.setBackgroundColor(Color.parseColor("#004000"));
+
+
+        Log.d("Answer",this.current_answer);
+        Log.d("Real answer",this.correct_answer);
     }
 }

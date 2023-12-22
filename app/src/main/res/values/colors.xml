@@ -5,4 +5,5 @@
     <color name="Silver">#C0C0C0</color>
     <color name="EAA7A7">#EAA7A7</color>
     <color name="Gray">#808080</color>
+    <color name="default_button_color">#9400D3</color>
 </resources>
