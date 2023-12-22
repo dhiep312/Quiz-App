@@ -3,23 +3,30 @@ package com.example.quiz_app_d02k14;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.opencsv.CSVReader;
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvValidationException;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {
-    private String question_file_path ="D:/Android/Quiz-App/app/src/main/res/raw/questions.csv";
-    private String user_file ="D:/Android/Quiz-App/app/src/main/res/raw/users.csv";
+    // Update file names without extension in the "res/raw" folder
+    private String questionFileName = "questions";
+    private String userFileName = "users";
+    private int number_of_questions = 0;
+    private int current_question = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,60 +36,101 @@ public class PlayActivity extends AppCompatActivity {
             String player_name = intent.getStringExtra("player_name");
             String selected_mode = intent.getStringExtra("mode");
             game_init(selected_mode);
-            init();
+            init_question();
+
+
 
         }
     }
-    public void init(){
-        try {
-            final List<String> record = extractRandomRow();
-            String firstField = record.get(0);
-            String secondField = record.get(1);
-            Button a_btn = findViewById(R.id.btn_ans_3);
-            a_btn.setText(secondField);
 
+    public void game_init(String game_mode) {
+
+        switch (game_mode) {
+            case "Easy":
+                this.number_of_questions = 10;
+                break;
+            case "Normal":
+                this.number_of_questions = 20;
+                break;
+            case "Hard":
+                this.number_of_questions = 30;
+                break;
+        }
+        Log.d("Mode", game_mode);
+    }
+
+    public void init_question() {
+        try {
+            InputStream inputStream = getResources().openRawResource(
+                    getResources().getIdentifier(questionFileName, "raw", getPackageName()));
+
+            // Read CSV file using CSVReader
+            CSVReader csvReader = new CSVReader(new InputStreamReader(inputStream));
+            List<String> record = extractRandomRow(csvReader);
+            Log.d("Extraction","Successfully");
+
+            String firstField = record.get(0);
+            String question_text = record.get(1);
+            String a_btn_text = record.get(2);
+            String b_btn_text = record.get(3);
+            String c_btn_text = record.get(4);
+            TextView question_field = findViewById(R.id.text_question);
+            Button a_btn = findViewById(R.id.btn_ans_1);
+            Button b_btn = findViewById(R.id.btn_ans_2);
+            Button c_btn = findViewById(R.id.btn_ans_3);
+            question_field.setText(question_text);
+            a_btn.setText(a_btn_text);
+            b_btn.setText(b_btn_text);
+            c_btn.setText(c_btn_text);
+            this.current_question += 1;
+            Log.d("current question", String.valueOf(this.current_question));
+            Log.d("Max question", String.valueOf(this.number_of_questions));
         } catch (CsvValidationException e) {
             throw new RuntimeException(e);
         }
     }
-    public void game_init(String game_mode){
-        int number_of_questions ;
-        switch (game_mode){
-            case "Easy":
-                number_of_questions = 10;
-                break;
-            case "Normal":
-                number_of_questions = 20;
-                break;
-            case "Hard":
-                number_of_questions = 30;
-                break;
+
+    public List<String> extractRandomRow(CSVReader csvReader) throws CsvValidationException {
+        try {
+            List<List<String>> allRecords = readCsvFile(csvReader);
+            List<String> randomRecord = RandomRecord(allRecords);
+            return randomRecord;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        Log.d("Mode",game_mode);
+        return null;
     }
 
-    public List<List<String>> readCsvFile() throws IOException, CsvValidationException {
+    public List<List<String>> readCsvFile(CSVReader csvReader) throws IOException, CsvValidationException {
+        List<List<String>> records = new ArrayList<>();
+        String[] record;
 
-        try (CSVReader csvReader = new CSVReaderBuilder(new FileReader(this.question_file_path))
-                .withSkipLines(1) // Skip header line if present
-                .build()) {
+        while ((record = csvReader.readNext()) != null) {
+            List<String> rowData = new ArrayList<>();
 
-            List<List<String>> records = new ArrayList<>();
-            String[] record;
+            // Assuming the first field contains a list of elements in square brackets
+            String firstField = record[0];
 
-            while ((record = csvReader.readNext()) != null) {
-                List<String> rowData = new ArrayList<>();
-                for (String field : record) {
-                    rowData.add(field);
-                }
-                records.add(rowData);
+            // Remove square brackets and split the string into a list
+            List<String> innerList = Arrays.asList(firstField.replaceAll("\\[|\\]", "").split(";"));
+
+            // Add the elements of the inner list to rowData
+            rowData.addAll(innerList);
+
+            // Add the remaining fields to rowData
+            for (int i = 1; i < record.length; i++) {
+                rowData.add(record[i]);
             }
-            Log.d("Read file successfully","vhbsfhgdjryhgdbv");
-            return records;
+
+            records.add(rowData);
         }
+
+        Log.d("Read file successfully", "vhbsfhgdjryhgdbv");
+        return records;
     }
 
-    public List<String> extractRandomRecord(List<List<String>> records) {
+
+    public List<String> RandomRecord(List<List<String>> records) {
         if (records == null || records.isEmpty()) {
             return null; // Handle the case where records are empty or null
         }
@@ -92,16 +140,8 @@ public class PlayActivity extends AppCompatActivity {
 
         return records.get(randomIndex);
     }
-    public List<String> extractRandomRow() throws CsvValidationException{
-        try {
 
-            List<List<String>> allRecords = readCsvFile();
-            List<String> randomRecord = extractRandomRecord(allRecords);
-            return randomRecord;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public void load_next_question(View view) {
+        init_question();
     }
 }

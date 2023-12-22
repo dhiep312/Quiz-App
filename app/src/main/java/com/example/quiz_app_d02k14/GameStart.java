@@ -19,7 +19,7 @@ public class GameStart {
     }
 
     public List<List<String>> readCsvFile() throws IOException, CsvValidationException {
-        try (CSVReader csvReader = new CSVReaderBuilder(new FileReader(question_file_path))
+        try (CSVReader csvReader = new CSVReaderBuilder(new FileReader(this.question_file_path))
                 .withSkipLines(1) // Skip header line if present
                 .build()) {
 

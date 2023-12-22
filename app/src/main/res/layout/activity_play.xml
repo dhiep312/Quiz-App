@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.296" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.33" />
 
     <TextView
         android:id="@+id/textView3"
@@ -36,6 +36,7 @@
         android:id="@+id/button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:onClick="load_next_question"
         android:text="Next"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -43,14 +44,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btn_ans_3"
@@ -68,12 +68,6 @@
             android:id="@+id/btn_ans_2"
             android:layout_width="match_parent"
             android:layout_height="72dp"
-            android:text="@string/empty" />
-
-        <Button
-            android:id="@+id/btn_ans_4"
-            android:layout_width="match_parent"
-            android:layout_height="73dp"
             android:text="@string/empty" />
 
     </LinearLayout>
