@@ -1,11 +1,14 @@
 package com.example.quiz_app_d02k14;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class selectDifficulty extends AppCompatActivity {
     private String selectedMode;
@@ -45,14 +48,32 @@ public class selectDifficulty extends AppCompatActivity {
         switch (viewName) {
             case "btn_easy":
                 this.selectedMode = "Easy";
+                resetButtonColors();
+                Button ez_btn = findViewById(R.id.btn_easy);
+                ez_btn.setBackgroundColor(Color.parseColor("#004000"));
                 break;
             case "btn_normal":
                 this.selectedMode = "Normal";
+                resetButtonColors();
+                Button nm_btn = findViewById(R.id.btn_normal);
+                nm_btn.setBackgroundColor(Color.parseColor("#004000"));
                 break;
             case "btn_hard":
                 this.selectedMode = "Hard";
+                resetButtonColors();
+                Button h_btn = findViewById(R.id.btn_hard);
+                h_btn.setBackgroundColor(Color.parseColor("#004000"));
                 break;
 
         }
+    }
+    private void resetButtonColors() {
+        // Set default color for all buttons
+        Button a_btn = findViewById(R.id.btn_easy);
+        Button b_btn = findViewById(R.id.btn_normal);
+        Button c_btn = findViewById(R.id.btn_hard);
+        a_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button_color));
+        b_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button_color));
+        c_btn.setBackgroundColor(ContextCompat.getColor(this, R.color.default_button_color));
     }
 }
