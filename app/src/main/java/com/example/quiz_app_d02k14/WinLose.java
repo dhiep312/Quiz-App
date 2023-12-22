@@ -17,9 +17,9 @@ public class WinLose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_win_lose);
         Intent intent = getIntent();
-        String player_name = intent.getStringExtra("player_name");
-        String mode = intent.getStringExtra("mode");
-        String score = intent.getStringExtra("score");
+        this.player_name = intent.getStringExtra("player_name");
+        this.mode = intent.getStringExtra("mode");
+        this.score = intent.getStringExtra("score");
         String total_questions = intent.getStringExtra("total_ques");
 
         TextView txt_view = findViewById(R.id.txt_name);
@@ -27,15 +27,10 @@ public class WinLose extends AppCompatActivity {
         TextView dif_view = findViewById(R.id.txt_difficulty2);
         TextView total_view = findViewById(R.id.txt_total2);
 
-        txt_view.setText(player_name);
-        score_view.setText(score);
-        dif_view.setText(mode);
-        total_view.setText(score + "/" +total_questions);
-
-
-
-
-
+        txt_view.setText(this.player_name);
+        score_view.setText(this.score);
+        dif_view.setText(this.mode);
+        total_view.setText(this.score + "/" +total_questions);
     }
 
     public void play_again_btn_clicked(View view) {
