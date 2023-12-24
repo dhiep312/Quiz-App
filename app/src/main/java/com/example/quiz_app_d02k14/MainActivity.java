@@ -13,18 +13,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
-    public void btn_main(View view) {
-        switch (view.getId()){
-//            case R.id.btn_play:
-//                startActivity(new Intent(MainActivity.this , PlayActivity.class));
-//                break;
-//            case R.id.btn_leaderBoard:
-//                break;
-//            case R.id.btn_setting:
-//                break;
-//            case R.id.btn_exit:
-//                break;
-        }
+    public void showLdb(View v){
+        Intent intent = new Intent(MainActivity.this, LeaderBoard.class);
+        startActivity(intent);
+    }
+    public void game_start(View view) {
+        Intent intent = new Intent(MainActivity.this, selectDifficulty.class);
+        startActivity(intent);
     }
 }

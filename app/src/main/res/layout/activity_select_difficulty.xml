@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_start_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".selectDifficulty">
@@ -12,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
         android:text="Quiz App"
-        android:textStyle="bold"
         android:textSize="40dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,9 +26,8 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="280dp"
         android:text="Name :"
-        android:textStyle="bold"
         android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -36,13 +36,27 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/background_top"
         android:layout_marginBottom="300dp"
+        android:background="@drawable/background_top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="300dp"
+            android:background="@drawable/background_top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
             android:id="@+id/editName"
@@ -53,27 +67,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="180dp"
+        android:layout_marginBottom="400dp"
         android:text="Select Difficulty :"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:layout_marginRight="180dp"
-        android:layout_marginBottom="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_easy"
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginTop="30sp"
+        android:onClick="choose_mode"
         android:text="Easy"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -85,6 +101,7 @@
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginTop="15sp"
+        android:onClick="choose_mode"
         android:text="Normal"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,6 +113,7 @@
         android:layout_width="200dp"
         android:layout_height="70dp"
         android:layout_marginTop="15sp"
+        android:onClick="choose_mode"
         android:text="Hard"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -106,10 +124,28 @@
         android:id="@+id/btn_next"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#438F0C"
+        android:onClick="game_on"
         android:text="Next"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#BA2828"
+        android:onClick="backToHome"
+        android:text="Cancel"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

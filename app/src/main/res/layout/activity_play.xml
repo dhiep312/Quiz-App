@@ -6,85 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".PlayActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/background_top"
+
+    <TextView
+        android:id="@+id/text_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/text_question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Answer"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.234" />
-
-        <TextView
-            android:id="@+id/txt_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Answer"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.13"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_question"
-            app:layout_constraintVertical_bias="0.759" />
-
-        <TextView
-            android:id="@+id/txt_number_answer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="6dp"
-            android:layout_marginRight="300dp"
-            app:layout_constraintStart_toEndOf="@+id/txt_view"
-            app:layout_constraintTop_toBottomOf="@+id/text_question"
-            app:layout_constraintVertical_bias="0.753" />
-
-        <TextView
-            android:id="@+id/txt_correct_wrong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="270dp"
-            android:text="is correct"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintStart_toEndOf="@+id/txt_number_answer"
-            app:layout_constraintTop_toBottomOf="@+id/text_question"
-            app:layout_constraintVertical_bias="0.743" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.33" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_next"
+        android:id="@+id/button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:onClick="load_next_question"
         android:text="Next"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -92,55 +44,48 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_next"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btn_ans_1"
-            android:layout_marginBottom="20sp"
-            android:layout_marginLeft="100dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:onClick="btn_a_clicked"
+            android:text="@string/empty" />
 
         <Button
             android:id="@+id/btn_ans_2"
-            android:layout_marginBottom="20sp"
-            android:layout_marginLeft="100dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Button" />
-
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:onClick="btn_b_clicked"
+            android:text="@string/empty" />
         <Button
             android:id="@+id/btn_ans_3"
-            android:layout_marginBottom="20sp"
-            android:layout_marginLeft="100dp"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Button" />
+            android:layout_width="match_parent"
+            android:layout_height="78dp"
+            android:onClick="btn_c_clicked"
+            android:text="@string/empty" />
+
+
     </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="44dp"
         android:layout_height="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.197"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/icon_back"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_marginBottom="30dp"
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wrong answe"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintHorizontal_bias="0.163"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/icon_back" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
